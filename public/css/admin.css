@@ -1,0 +1,79 @@
+.bg-d{
+  background-color: #e3342f;
+}
+
+.bg-r{
+  background-color: #38c172;
+}
+
+.bg-n{
+  background-color: #2196f3ad;
+}
+.bg-i{
+  background-color: #FFEB3B;
+}
+.label-css{
+  padding-left: 10px;
+}
+.row-padding{
+  padding-left: 15px;
+}
+.checkbox-css{
+  width: 10% !important;
+}
+.admin-footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #42668a;
+  color: white;
+  text-align: center;
+}
+.copyright{
+  margin-top: 10px;
+}
+.lhrc-logo{
+  width: 9vh;
+}
+.header-height{
+  height: 10vh;
+}
+.nav-link{
+  color: white;
+}
+.nav-link:hover{
+  color: #a7a6a6;
+}
+.navbar-font{
+  font-size: 1.3rem !important;
+}
+.no-scrollbar-css{
+  overflow: hidden;
+}
+.dropdown-menu{
+  width: 680px !important;
+}
+.dropdown-menu.show{
+      background-color: #c6d9e7;
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #545b62;
+    color: #fff;
+    transition: all 0.3s;
+    padding-left: 15px;
+}
+.sidebar-header{
+  padding-top: 4vh;
+}

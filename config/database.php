@@ -48,8 +48,8 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
+            'database' => env('DB_DATABASE', 'lhrc-educational-resources'),
+            'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
@@ -62,12 +62,12 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-        
+
         'mysql_testing' => [
             'driver'    => 'mysql',
             'host'      => env('TESTING_DB_HOST', 'localhost'),
-            'database'  => env('TESTING_DB_DATABASE', 'forge'),
-            'username'  => env('TESTING_DB_USERNAME', 'forge'),
+            'database'  => env('TESTING_DB_DATABASE', 'lhrc-educational-resources-test'),
+            'username'  => env('TESTING_DB_USERNAME', 'root'),
             'password'  => env('TESTING_DB_PASSWORD', ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',

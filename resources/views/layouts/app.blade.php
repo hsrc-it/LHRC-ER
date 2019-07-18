@@ -9,28 +9,40 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/admin.css') }}">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm header-height">
             <div class="container">
+              <div class="col-md-2">
+                  <a href="http://www.pnu.edu.sa/en/Pages/default.aspx" class="navbar-brand"><img class="lhrc-logo" src="{{ URL::asset('images/lhrc_logo.png') }}" alt="AHM Logo"></a>
+              </div>
+              <div class="col-md-6">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'SHRB') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              </div>
+              <div class="col-md-4">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
@@ -69,9 +81,13 @@
                         @endguest
                     </ul>
                 </div>
+              </div>
             </div>
         </nav>
-
+        <!-- Sidebar -->
+        @if (Auth::check())
+          @include('layouts.sidebar')
+        @endif
         <main class="py-4">
             @yield('content')
         </main>
