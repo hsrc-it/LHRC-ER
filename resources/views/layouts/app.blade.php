@@ -10,7 +10,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet" />
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
@@ -35,7 +34,7 @@
               </div>
               <div class="col-md-6">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'SHRB') }}
+                    {{ config('app.name', 'LHRC-ER') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -92,5 +91,7 @@
             @yield('content')
         </main>
     </div>
+  <!-- Scripts -->
+  <script src="{{ asset('js/admin.js') }}"></script>
 </body>
 </html>
