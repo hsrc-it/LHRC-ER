@@ -16,7 +16,9 @@
                                         <div class="panel-body">
                                           <div class="flex-center position-ref full-height">
                                           </br>
-                                          {{ html()->form('PUT', '/admin/create/educational-resource')->open() }}
+                                          {{ html()->form('post', '/admin/store/educational-resource')->open() }}
+                                          <!-- token -->
+                                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <!-- Title -->
                                             <div class='form-group row'>
                             									{{ html()->label('Title *')->class(['col-sm-3', 'col-form-label', 'font-weight-bold']) }}
@@ -28,7 +30,7 @@
                                               	@endif
                             									</div>
                             									<div class="col-sm-8">
-                                                {{ html()->text('title', null)->class('form-control') }}
+                                                {{ html()->text('title', null)->class('form-control')->required() }}
                             									</div>
                             								</div>
                                             <!-- Topics -->
@@ -42,7 +44,13 @@
                                             	@endif
                                             	</div>
                             									<div class="col-sm-8">
-                                                {{ html()->multiselect('topics', [1 => 'Physical Activity', 2 => 'Sedentary Behavior ', 3 => 'Physical Fitness ', 4 => 'Nutrition ', 5 => 'Mental Health', 6 => 'Sleep and Health', 7 => 'Body Composition and Weight Management ', 8 => 'Childrens and Adolescents Health', 9 => 'Womens Health', 10 => 'Other'])->placeholder('Select topic')->class('form-control') }}
+                                                <div class="row-sm-8">
+                                                  <b class="text-success">Press ctrl while selecting more than one</b>
+                                                </div>
+                                                <div class="row-sm-8">
+                                                  {{ html()->multiselect('topics', App\Topic::getTopics())->attribute('size', 11)->required()->placeholder('Select topic')->class(['form-control', 'no-scrollbar-css']) }}
+                                                </div>
+
                             									</div>
                                             </div>
                                             <!-- Gender -->
@@ -56,7 +64,7 @@
                                               	@endif
                             									</div>
                             									<div class="col-sm-8">
-                                                  {{ html()->select('gender', [1 => 'male', 2 =>'female', 3 => 'both'])->placeholder('Select gender')->class('form-control') }}
+                                                  {{ html()->select('gender', [1 => 'male', 2 =>'female', 3 => 'both'])->required()->placeholder('Select gender')->class('form-control') }}
                             									</div>
                             								</div>
                                             <!-- Age Grup -->
@@ -70,7 +78,7 @@
                                                 @endif
                                               </div>
                                               <div class="col-sm-8">
-                                                {{ html()->select('age_group', [1 => 'child [0-12]', 2 => 'Adolescent [13-18]', 3 => 'Adults [19-64]', 4 => 'Elderly [65+]'])->placeholder('Select age group')->class('form-control') }}
+                                                {{ html()->select('age_group', [1 => 'child [0-12]', 2 => 'Adolescent [13-18]', 3 => 'Adults [19-64]', 4 => 'Elderly [65+]'])->required()->placeholder('Select age group')->class('form-control') }}
                             									</div>
                             								</div>
                                             <!-- Language -->
@@ -84,7 +92,7 @@
                                               @endif
                                               </div>
                                               <div class="col-sm-8">
-                                                {{ html()->select('language', [1 => 'Arabic', 2 => 'English'])->placeholder('Select language')->class('form-control') }}
+                                                {{ html()->select('language', [1 => 'Arabic', 2 => 'English'])->required()->placeholder('Select language')->class('form-control') }}
                                               </div>
                                             </div>
                                             <!-- Date of aproval -->
@@ -98,7 +106,7 @@
                                               @endif
                                               </div>
                                               <div class="col-sm-8">
-                                                {{ html()->date('date_of_aproval', null)->class('form-control') }}
+                                                {{ html()->date('date_of_aproval', null)->required()->class('form-control') }}
                                               </div>
                                             </div>
                                             <!-- keywords -->
@@ -136,7 +144,7 @@
                                                   <b class="text-danger">This field is mandatory for Videos</b>
                                                 </div>
                                                 <div class="row-sm-8">
-                                                  {{ html()->text('url', null)->class('form-control') }}
+                                                  <input class="form-control" type="text" name="url" id="url" onchange="changeRequiredUpload()" pattern="https?://.+">
                                                 </div>
                             									</div>
                             								</div>
@@ -156,7 +164,7 @@
                                                 </div>
                                                 <div class="row-sm-8">
                                                   <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="customFile" onChange='getExtension(event)'>
+                                                    <input id="upload" type="file" class="custom-file-input" id="customFile" onChange='getExtension(event)' required>
                                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                                   </div>
                                                 </div>
@@ -174,7 +182,7 @@
                                               @endif
                                               </div>
                                               <div class="col-sm-8">
-                                                {{ html()->select('format', [1 => 'Word', 2 => 'PowerPoint', 3 => 'PDF', 4 => 'Video', 5 => 'Other'])->placeholder('Select format')->class('form-control') }}
+                                                {{ html()->select('format', [1 => 'Word', 2 => 'PowerPoint', 3 => 'PDF', 4 => 'Video', 5 => 'Other'])->required()->placeholder('Select format')->class('form-control') }}
                                               </div>
                                             </div>
                                             <div class="form-group row">
@@ -188,6 +196,7 @@
                                                         <th scope="col">Source name</th>
                                                         <th scope="col">Source email</th>
                                                         <th scope="col">Source phone</th>
+                                                        <th scope="col"></th>
                                                       </tr>
                                                     </thead>
                                                     <tbody>
@@ -199,7 +208,7 @@
                                                                   <strong>{{ $errors->first('source_name') }}</strong>
                                                               </span>
                                                           @else
-                                                            {{ html()->text('source-name-1', null)->class('form-control') }}
+                                                            {{ html()->text('name', null)->attribute('id', 'source-name-1')->required()->class('form-control') }}
                                                           @endif
                                                         </td>
                                                         <td>
@@ -208,7 +217,7 @@
                                                                   <strong>{{ $errors->first('source_email') }}</strong>
                                                               </span>
                                                           @else
-                                                            {{ html()->text('source-email-1', null)->class('form-control') }}
+                                                            {{ html()->email('email', null)->attribute('id', 'source-email-1')->required()->class('form-control') }}
                                                           @endif
                                                         </td>
                                                         <td>
@@ -217,8 +226,10 @@
                                                                   <strong>{{ $errors->first('source_phone') }}</strong>
                                                               </span>
                                                           @else
-                                                            {{ html()->text('source-phone-1', null)->class('form-control') }}
+                                                            {{ html()->text('phone', null)->attributes(['id' => 'source-phone-1', 'pattern'=>'[0-9]*'])->required()->class('form-control') }}
                                                           @endif
+                                                        </td>
+                                                        <td>
                                                         </td>
                                                       </tr>
                                                     </tbody>
