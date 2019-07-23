@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use App\User;
+use App\EducationalResource;
 use Faker\Generator as Faker;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -27,24 +28,16 @@ class EducationalResourcesTest extends TestCase
      public function testUserAddResource()
      {
        $this->withoutExceptionHandling();
-       $resource = [
-         '_token' => csrf_token(),
-         'title' => 'title1',
-         'topics' => '1',
-         'gender' => '1',
-         'age-group' => '1',
-         'langauge' => '1',
-         'date_of_aproval' => '12/08/2019',
-         'keywords' => 'h,y,u',
-         'url' => 'http://10.24.142.232:8000/admin/create/educational-resource',
-         'upload' => '',
-         'format' => '1',
-       ];
+       //create user to login
        $user = factory(User::class)->create();
-       //register new user through te registration route
+       //create resource dummy data
+       $resource = factory(EducationalResource::class)->create();
+       $resource->user_id = $user->id;
+       //sen post request as created user
        $response = $this->actingAs($user)->call('Post', '/admin/store/educational-resource', $resource)
-      ->assertSessionHas($seccuss, "Resource were added successfuly");
-
+       //assert that the session has success message
+      ->assertSessionHas('success', "Resource were added successfuly");
+      //assert that databse has data of created resource
       $this->assertDatabaseHas('educational_resources', ['title'=>$resource->title]);
      }
 }

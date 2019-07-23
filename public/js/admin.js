@@ -1,5 +1,23 @@
   //create variable to hold sources of Resource
   var sources = new Array();
+  //check if form data was retuned back
+  $( document ).ready(function() {
+    if($("#url").val() != ""){
+      document.getElementById("upload").required = false;
+    }
+    if($("#sources").val() != ""){
+      sources = JSON.parse($("#sources").val());
+      //get table were you will add row
+      var table = document.getElementById("sourcesTable");
+      for (i = 0; i < sources.length; i++) {
+          table.rows[i+1].cells[0].innerHTML = sources[i].id;
+          table.rows[i+1].cells[1].innerHTML = '<input class="form-control" type="text" name="name" id="source-name-'+(table.rows.length-1) +'" required value="'+sources[i].name+'">';
+          table.rows[i+1].cells[2].innerHTML = '<input class="form-control" type="email" name="email" id="source-email-'+(table.rows.length-1) +'" required value="'+sources[i].email+'">';
+          table.rows[i+1].cells[3].innerHTML = '<input class="form-control" type="text" name="phone" id="source-phone-'+(table.rows.length-1) +'" required value="'+sources[i].phone+'">';
+          table.rows[i+1].cells[4].innerHTML = '<buttn type="submit" onclick="removeRow('+sources[i].id+')" class="btn btn-danger">X</buton>';
+        }
+    }
+  });
   $(document).on('change', '[id^=source-]', function(event)
   {
     //get the id of field
@@ -20,7 +38,7 @@
 					{
             sources[i][property] = value;
             updated = true;
-            console.log(sources);
+            $('#sources').val(JSON.stringify(sources));
             break;
 					}
 				}
@@ -50,7 +68,7 @@
           break;
         }
         sources.push(source);
-        console.log(sources);
+        $('#sources').val(JSON.stringify(sources));
       }
 
   });
@@ -85,7 +103,7 @@
       {
         //then reomve the found source from the sources array
 				sources.splice(i, 1);
-        console.log(sources);
+        $('#sources').val(JSON.stringify(sources));
         break;
       }
     }
@@ -96,12 +114,10 @@
   function changeRequiredUpload()
   {
   if($("#url").val() != ""){
-    console.log('Added url');
     document.getElementById("upload").required = false;
 
   }
   if($("#url").val() == ""){
-    console.log('No url');
     document.getElementById("upload").required = true;
   }
 }

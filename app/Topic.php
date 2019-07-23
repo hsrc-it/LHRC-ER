@@ -17,4 +17,8 @@ class Topic extends Model
         $topics = Topic::pluck('english_name', 'id');
         return $topics;
     }
+    public function resources()
+    {
+        return $this->belongsToMany('App\EducationalResource');
+    }
 }
