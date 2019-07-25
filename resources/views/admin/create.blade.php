@@ -18,12 +18,12 @@
                                             <div class="flash-message">
                                               @if (Session::has('success'))
                                               	<div class="alert alert-success"  role="alert">
-                                              		<strong>success:</strong> {{ Session::get('success') }}
+                                              		<strong>Success:</strong> {{ Session::get('success') }}
                                               	</div>
                                               @endif
                                               @if (Session::has('error'))
                                               	<div class="alert alert-danger"  role="alert">
-                                              		<strong>success:</strong> {{ Session::get('error') }}
+                                              		<strong>Error:</strong> {{ Session::get('error') }}
                                               	</div>
                                               @endif
                                               @if (count($errors) > 0)
@@ -37,7 +37,7 @@
                                             @endif
                                            </div>
                                           </br>
-                                          {{ html()->form('post', '/admin/store/educational-resource')->open() }}
+                                          {{ html()->form('post', '/admin/store/educational-resource')->attribute('enctype', "multipart/form-data")->open() }}
                                           <!-- token -->
                                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <!-- Title -->
@@ -108,7 +108,7 @@
                                                   <b class="text-danger">This field is mandatory for Videos</b>
                                                 </div>
                                                 <div class="row-sm-9">
-                                                  <input class="form-control" type="text" name="url" id="url" onchange="changeRequiredUpload()" pattern="https?://.+">
+                                                  <input class="form-control" type="text" name="url" id="url" onchange="changeRequiredUpload()" type="url">
                                                 </div>
                             									</div>
                             								</div>
@@ -117,12 +117,13 @@
                                               {{ html()->label('Upload')->class(['col-sm-3', 'col-form-label', 'font-weight-bold']) }}
                                               <div class="col-sm-9">
                                                 <div class="row-sm-9">
-                                                  <b class="text-danger">Upload is not mandatory for videos resource</b>
+                                                  <b class="text-success">Not mandatory for videos resource (Maximum Upload size is 3MB)</b>
                                                 </div>
                                                 <div class="row-sm-9">
                                                   <div class="custom-file">
-                                                    <input id="upload" type="file" class="custom-file-input" id="customFile" onChange='getExtension(event)' required>
+                                                    <input type="file" class="custom-file-input" name="file" id="customFile" onChange='getExtension(event)' required>
                                                     <label class="custom-file-label" for="customFile">Choose file</label>
+
                                                   </div>
                                                 </div>
 

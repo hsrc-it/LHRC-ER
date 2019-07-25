@@ -18,6 +18,13 @@
         }
     }
   });
+
+  $(".custom-file-input").on("change", function() {
+    //The following code to display the name of the file selected
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+
   $(document).on('change', '[id^=source-]', function(event)
   {
     //get the id of field
@@ -110,15 +117,16 @@
     var table = document.getElementById("sourcesTable");
     table.deleteRow(row);
   }
+
   //check if URL field is empty
   function changeRequiredUpload()
   {
   if($("#url").val() != ""){
-    document.getElementById("upload").required = false;
+    document.getElementById("customFile").required = false;
 
   }
   if($("#url").val() == ""){
-    document.getElementById("upload").required = true;
+    document.getElementById("customFile").required = true;
   }
 }
 
