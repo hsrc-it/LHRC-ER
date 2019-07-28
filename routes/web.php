@@ -19,6 +19,6 @@ Auth::routes();
 //Admin routes
 Route::group(['middleware' => ['auth']], function() {
   Route::get('/admin/show-all/educational-resource', 'HomeController@index')->name('home');
-  Route::get('/admin/create/educational-resource', 'EducationalResourcesController@create');
+  Route::get('/admin/create/educational-resource', 'EducationalResourcesController@create')->name('createResource');
   Route::post('/admin/store/educational-resource', 'EducationalResourcesController@store');
 });

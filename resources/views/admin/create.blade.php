@@ -75,7 +75,7 @@
                             								</div>
                                             <!-- Language -->
                                             <div class="form-group row">
-                                              {{ html()->label('Language')->class(['col-sm-3', 'col-form-label', 'font-weight-bold']) }}
+                                              {{ html()->label('Language *')->class(['col-sm-3', 'col-form-label', 'font-weight-bold']) }}
                                               <div class="col-sm-9">
                                                 {{ html()->select('language', [1 => 'Arabic', 2 => 'English'])->required()->placeholder('Select language')->class('form-control') }}
                                               </div>
@@ -138,15 +138,15 @@
                                             </div>
                                             <div class="form-group row">
                                               <div class="card">
-                                                <div class="card-header font-weight-bold">Sources <b class="text-danger">(at least add one resource)</b></div>
+                                                <div class="card-header font-weight-bold">Author <b class="text-danger">(at least add one author)</b></div>
                                                 <div class="card-body ">
-                                                  <table class="table" id='sourcesTable'>
+                                                  <table class="table" id='authorsTable'>
                                                     <thead>
                                                       <tr>
                                                         <th scope="col">#</th>
-                                                        <th scope="col">Source name</th>
-                                                        <th scope="col">Source email</th>
-                                                        <th scope="col">Source phone</th>
+                                                        <th scope="col">Author name</th>
+                                                        <th scope="col">Author email</th>
+                                                        <th scope="col">Author phone</th>
                                                         <th scope="col"></th>
                                                       </tr>
                                                     </thead>
@@ -157,30 +157,30 @@
                                                               <span class="help-block">
                                                                   <strong></strong>
                                                               </span>
-                                                            {{ html()->text('name', null)->attribute('id', 'source-name-1')->required()->class('form-control') }}
+                                                            {{ html()->text('name', null)->attribute('id', 'author-name-1')->required()->class('form-control') }}
                                                         </td>
                                                         <td>
                                                           <span class="help-block">
                                                               <strong></strong>
                                                           </span>
-                                                            {{ html()->email('email', null)->attribute('id', 'source-email-1')->required()->class('form-control') }}
+                                                            {{ html()->email('email', null)->attribute('id', 'author-email-1')->required()->class('form-control') }}
                                                         </td>
                                                         <td>
                                                           <span class="help-block">
                                                               <strong></strong>
                                                           </span>
-                                                            {{ html()->text('phone', null)->attributes(['id' => 'source-phone-1', 'pattern'=>'[0-9]*'])->required()->class('form-control') }}
+                                                            {{ html()->text('phone', null)->attributes(['id' => 'author-phone-1', 'pattern'=>'[0-9]*'])->required()->class('form-control') }}
                                                         </td>
                                                         <td>
                                                         </td>
                                                       </tr>
                                                     </tbody>
                                                   </table>
-                                                  <a  id="addSourceField" class='btn btn-primary' style='color:white;'>Add Source</a>
+                                                  <a  id="addAuthorField" class='btn btn-primary' style='color:white;'>Add author</a>
                                                 </div>
                                               </div>
                                             </div>
-                                            {{ html()->text('sources', null)->attributes(['hidden' => 'true'])->required() }}
+                                            {{ html()->text('authors', null)->attributes(['hidden' => 'true'])->required() }}
                                             {{ html()->submit('Add Resource')->class('btn btn-success')}}
                                             {{ html()->form()->close() }}
                                           </div>

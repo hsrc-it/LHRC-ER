@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\EducationalResource;
-use App\Source;
+use App\Author;
 use URL;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -58,63 +59,73 @@ class EducationalResourcesController extends Controller
               'url' => ['nullable','url','unique:educational_resources,url'],
               'file' => ['file','max:3000', 'required_if:url,""'],
               'format' => 'required',
-              'sources.*.name' => ['required', 'integer']
+              'authors' => ['required']
           ]);
 
-          //save file metadata
-          $transaction = DB::transaction(function() use ($request){
-            $newResource = new EducationalResource;
-            $newResource->user_id = Auth::User()->id;
-            $newResource->fill($request->all());
 
-            if(!empty($request->file))
-            {
-              $path = $request->file->storeAs('public/educational_resources', $request->title.'.'.$request->file->getClientOriginalExtension());
-              //check if file uploaded successfully
-              if(! empty($path) ){
-                //get url of uploaded fileName
-                $newResource->url = asset('storage/educational_resources/'.$request->title.'.'.$request->file->getClientOriginalExtension());
-                $newResource->save();
+          try{
+            //save file metadata
+            $transaction = DB::transaction(function() use ($request){
+              $newResource = new EducationalResource;
+              $newResource->user_id = Auth::User()->id;
+              $newResource->fill($request->all());
+
+              if(!empty($request->file))
+              {
+
+                $title = (string) Str::uuid();
+                $fileExtension = $request->file->getClientOriginalExtension();
+                $fileName = $title.'.'.$fileExtension;
+                $path = $request->file->storeAs('public/educational_resources', $fileName);
+                //check if file uploaded successfully
+                if(!empty($path) ){
+                  //get url of uploaded fileName
+                  $newResource->url = asset('storage/educational_resources/'.$fileName);
+                  $newResource->save();
+                }else{
+                  // submit error message to user
+                  throw new \Exception('Resource could not be uploaded');
+                }
               }else{
-                // submit error message to user
-                session(['error' => "sorry file could not be uploaded, try again"]);
-
+                $newResource->save();
+              }
+              if( $newResource )
+              {
+                //add Topics
+                $newResource->topics()->sync($request->topics);
+                if(!empty($request->authors))
+                {
+                  // add sources
+                  $authors = json_decode($request->authors);
+                  foreach($authors as $author)
+                  {
+                      $newAuthor = new Author;
+                      $newAuthor->educational_resource_id	 = $newResource->id;
+                      $newAuthor->name = $author->name;
+                      $newAuthor->email = $author->email;
+                      $newAuthor->phone = $author->phone;
+                      $newAuthor->save();
+                  }
+                  session(['success' => "Resource with id $newResource->id were added successfuly"]);
+                }else{
+                  if(!empty($path)){
+                    Storage::delete($path);
+                  }
+                  throw new \Exception('At least one author must be added');
+                  }
+              }else{
+                if(!empty($path)){
+                  Storage::delete($path);
+                }
                 throw new \Exception('Resource could not be uploaded');
               }
-            }else{
-              $newResource->save();
-            }
-            if( $newResource )
-            {
-              //add Topics
-              $newResource->topics()->sync($request->topics);
-              if(!empty($request->sources))
-              {
-                // add sources
-                $sources = json_decode($request->sources);
-                foreach($sources as $source)
-                {
-                    $newSource = new Source;
-                    $newSource->educational_resource_id	 = $newResource->id;
-                    $newSource->source_name = $source->name;
-                    $newSource->source_email = $source->email;
-                    $newSource->source_phone = $source->phone;
-                    $newSource->save();
-                }
-                session(['success' => "Resource with id $newResource->id were added successfuly"]);
-              }else{
-                  Storage::delete($path);
-                  session(['error' => "At least one sources must be added"]);
-                  throw new \Exception('At least one sources must be added');
-                }
-            }else{
-              Storage::delete($path);
-              session(['error' => "Sorry Resource could not be uploaded, try again"]);
-              throw new \Exception('Resource could not be uploaded');
-            }
-        });
+            });
+          }
+          catch(\Exception $e){
+            session(['error' => $e->getMessage()]);
+          }
       }
-      return redirect()->route('admin.create');
+      return redirect()->route('createResource');
     }
 
     /**

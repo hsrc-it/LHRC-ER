@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Source extends Model
+class Author extends Model
 {
-  protected $table = 'sources';
+  protected $table = 'authors';
   protected $fillable = [
     'educational_resource_id	',
-    'source_name',
-    'source_email',
-    'source_phone'
+    'name',
+    'email',
+    'phone'
   ];
   public function resources()
   {

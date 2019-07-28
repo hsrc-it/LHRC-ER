@@ -22,9 +22,9 @@ class EducationalResource extends Model
     {
         return $this->belongsToMany('App\Topic');
     }
-    public function sources()
+    public function authors()
     {
-        return $this->hasMany('App\Source');
+        return $this->hasMany('App\Author');
     }
     public function user()
     {
