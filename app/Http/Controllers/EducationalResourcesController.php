@@ -33,7 +33,7 @@ class EducationalResourcesController extends Controller
      */
     public function create()
     {
-        response(View::make('admin.create'))->header('X-Frame-Options', 'DENY');
+        return response(View::make('admin.create'))->header('X-Frame-Options', 'DENY');
     }
 
     /**
