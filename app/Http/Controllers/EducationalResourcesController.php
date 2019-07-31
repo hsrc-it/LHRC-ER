@@ -99,12 +99,36 @@ class EducationalResourcesController extends Controller
                   $authors = json_decode($request->authors);
                   foreach($authors as $author)
                   {
-                      $newAuthor = new Author;
-                      $newAuthor->educational_resource_id	 = $newResource->id;
-                      $newAuthor->name = $author->name;
-                      $newAuthor->email = $author->email;
-                      $newAuthor->phone = $author->phone;
-                      $newAuthor->save();
+                    $newAuthor = new Author;
+                    $newAuthor->educational_resource_id	 = $newResource->id;
+                    if ($author === reset($authors)){
+                      if($author->name == "" || $author->email == "" || $author->phone == ""){
+                        throw new \Exception('First author must have full information(name, email and phone)');
+                      }
+                      else{
+                        $newAuthor->name = $author->name;
+                        $newAuthor->email = $author->email;
+                        $newAuthor->phone = $author->phone;
+                        $newAuthor->save();
+                      }
+                    }
+                    else{
+                        if($author->name == ""){
+                          if(!empty($path)){
+                            Storage::delete($path);
+                          }
+                          throw new \Exception('Authors name is mandotry');
+                        }else{
+                          $newAuthor->name = $author->name;
+                          $newAuthor->email = $author->email;
+                          if($author->phone == ""){
+                            $newAuthor->phone = null;
+                          }else{
+                            $newAuthor->phone = $author->phone;
+                          }
+                          $newAuthor->save();
+                        }
+                    }
                   }
                   session(['success' => "Resource with id $newResource->id were added successfuly"]);
                 }else{
