@@ -33,7 +33,7 @@ class EducationalResourcesController extends Controller
      */
     public function create()
     {
-        return View::make('admin.create');
+        response(View::make('admin.create'))->header('X-Frame-Options', 'DENY');
     }
 
     /**
@@ -149,7 +149,7 @@ class EducationalResourcesController extends Controller
             session(['error' => $e->getMessage()]);
           }
       }
-      return redirect()->route('createResource');
+      return response(redirect()->route('createResource'))->header('X-Frame-Options', 'DENY');
     }
 
     /**
@@ -160,7 +160,7 @@ class EducationalResourcesController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->header('X-Frame-Options', 'DENY');
     }
 
     /**
@@ -171,7 +171,7 @@ class EducationalResourcesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return response()->header('X-Frame-Options', 'DENY');
     }
 
     /**
@@ -183,7 +183,7 @@ class EducationalResourcesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return response()->header('X-Frame-Options', 'DENY');
     }
 
     /**
@@ -194,6 +194,6 @@ class EducationalResourcesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return response()->header('X-Frame-Options', 'DENY');
     }
 }

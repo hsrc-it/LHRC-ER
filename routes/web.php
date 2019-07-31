@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response()->view('welcome')->header('X-Frame-Options', 'ALLOW-FROM https://lh-hsrc.pnu.edu.sa');
 });
 
 Auth::routes();
