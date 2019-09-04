@@ -25,6 +25,17 @@ function search()
 	 //alert("The form was submitted");
 }
 
+function resetFormFields()
+{
+  event.preventDefault();
+
+	 $("#keyword").val("");
+	 $("#gender").val("");
+	 $("#age_group").val("");
+   $("#language").val("");
+   $("#topic").val("");
+}
+
 $(document).on('click', '.pagination a', function(event){
 	event.preventDefault();
 	var page = $(this).attr('href').split('page=')[1];

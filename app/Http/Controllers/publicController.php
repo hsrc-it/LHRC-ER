@@ -22,7 +22,8 @@ class publicController extends Controller
    */
   public function index()
   {
-      return View::make('search');
+      $totalEducationalResources = EducationalResource::count();
+      return  response(View::make('search', compact('totalEducationalResources')))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
   }
 
   public function search(Request $request)
@@ -69,6 +70,6 @@ class publicController extends Controller
       }
       $findEducationalResources->orderBy('date_of_approval', 'asc');
       $findEducationalResources = $findEducationalResources->paginate(5);
-      return  response(View::make('results', compact('findEducationalResources',['data' => $findEducationalResources])))->header('X-Frame-Options', 'DENY');
+      return  response(View::make('results', compact('findEducationalResources',['data' => $findEducationalResources])))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
   }
 }

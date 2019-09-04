@@ -30,15 +30,19 @@
     <body class="body-size">
         <div class="flex-center position-ref full-height">
             <div class="content">
+                <div class="p-3 mb-2 text-dark center"><h4>LHRC contains <b>{{$totalEducationalResources}}</b> educational resources </h4></div>
                   <form action="/search" method="GET" id="SearchForm">
                     <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
                     <div class='form-group row'>
-                      <div class='col-sm-12'>
+                      <div class='col-sm-10'>
                         <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search using keyword">
+                      </div>
+                      <div class='col-sm-2'>
+                        <input type="submit" value="Search" class="btn btn-primary" onclick="search()">
                       </div>
                     </div>
                     <div class='form-group row'>
-                      <div class='col-sm-6'>
+                      <div class='col-sm-2'>
                         <select name="gender" id="gender"class="form-control" >
                           <option value="">Select gender </option>
                           <option value="1">Male </option>
@@ -46,7 +50,7 @@
                           <option value="3">Both </option>
                         </select>
                       </div>
-                      <div class='col-sm-6'>
+                      <div class='col-sm-3'>
                         <select name="age_group" id="age_group" class="form-control" >
                           <option value="">Select age group </option>
                           <option value="1">child [0-12] </option>
@@ -55,17 +59,14 @@
                           <option value="4">Elderly [65+] </option>
                         </select>
                       </div>
-                    </div>
-
-                    <div class='form-group row'>
-                      <div class='col-sm-6'>
+                      <div class='col-sm-2'>
                         <select name="language" id="language" class="form-control" >
                           <option value="">Select language </option>
                           <option value="1">Arabic </option>
                           <option value="2">English </option>
                         </select>
                       </div>
-                      <div class='col-sm-6'>
+                      <div class='col-sm-3'>
                         <select name="topic" id="topic" class="form-control" >
                           <option value="" selected="selected">Select topic</option>
                           <option value="1">Physical Activity</option>
@@ -80,12 +81,9 @@
                           <option value="10">Other</option>
                         </select>
                       </div>
-                    </div>
-
-                    <div class='form-group row'>
-                      <div class='col-sm-6'>
-                      <input type="submit" class="btn btn-primary" onclick="search()">
-                    </div>
+                      <div class='col-sm-2'>
+                        <input type="submit" value=" Reset " class="btn btn-primary" onclick="resetFormFields()">
+                      </div>
                     </div>
                   </form>
                 <div class="results" id="results">

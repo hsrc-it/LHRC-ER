@@ -92,5 +92,5 @@
   		</ul>
   	</div>
 @else
-  no reults ...
+  No educational resouces were found
 @endif

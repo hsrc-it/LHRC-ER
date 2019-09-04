@@ -1,5 +1,5 @@
 .body-size{
-  margin: 60px;
+  //margin: 60px;
   background-color: #ffffff;
 }
 .icon-size{
@@ -7,4 +7,7 @@
 }
 .text-orange{
   color: #fc8d00;
+}
+.center{
+  text-align: center;
 }
