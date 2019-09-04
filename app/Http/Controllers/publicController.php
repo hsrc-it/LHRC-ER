@@ -1,0 +1,74 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\EducationalResource;
+use App\Author;
+use URL;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+use \Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
+class publicController extends Controller
+{
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+      return View::make('search');
+  }
+
+  public function search(Request $request)
+  {
+      // $validatedData = $request->validate([
+      //     // 'keyword' => ['required'],
+      //     // 'topics' => ['required'],
+      //      'gender' => ['integer'],
+      //      'age_group' => ['integer']
+      //     // 'language' => ['required','integer'],
+      //     // 'date_of_approval' => ['required'],
+      //     // 'url' => ['nullable','url','unique:educational_resources,url'],
+      //     // 'file' => ['file','max:3000', 'required_if:url,""'],
+      //     // 'format' => 'required',
+      //     // 'authors' => ['required']
+      // ]);
+      //start search//
+      $findEducationalResources = new EducationalResource();
+      $findEducationalResources = $findEducationalResources->newQuery();
+      if($request->keyword != '')
+      {
+        $findEducationalResources->where(function ($query) use ($request){
+          $query->where('title', 'LIKE', "%{$request->keyword}%")
+                ->orwhere('keywords', 'LIKE', "%{$request->keyword}%");
+        });
+      }
+      if($request->gender != '')
+      {
+        $findEducationalResources->where('gender', $request->gender);
+      }
+      if($request->age_group != '')
+      {
+        $findEducationalResources->where('age_group', $request->age_group);
+      }
+      if($request->language != '')
+      {
+        $findEducationalResources->where('language', $request->language);
+      }
+      if($request->topic != '')
+      {
+        $findEducationalResources->with('topics')->whereHas('topics', function($query) use ($request){
+                $query->where('topic_id', $request->topic);
+            });
+      }
+      $findEducationalResources->orderBy('date_of_approval', 'asc');
+      $findEducationalResources = $findEducationalResources->paginate(5);
+      return  response(View::make('results', compact('findEducationalResources',['data' => $findEducationalResources])))->header('X-Frame-Options', 'DENY');
+  }
+}
