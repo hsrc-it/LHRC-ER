@@ -23,7 +23,7 @@ class EducationalResourcesController extends Controller
      */
     public function index()
     {
-        return View::make('home');
+        return response(View::make('home')->header('X-Frame-Options', 'DENY');
     }
 
     /**

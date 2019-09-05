@@ -3,7 +3,7 @@
       <thead>
         <tr class="table-secondary">
           <th colspan="5">
-            {{ $findEducationalResources->total() }} Educational resource matched your search
+            <h5>{{ $findEducationalResources->total() }} Educational resource matched your search</h5>
           </th>
         </tr>
         <tr>
@@ -31,7 +31,7 @@
             {{ (($findEducationalResources->currentPage() - 1 ) * $findEducationalResources->perPage() ) + $loop->iteration }}
           </td>
           <td>
-          <h5><a href="{{$EducationalResource->url}}" target="_blank">
+          <h6><a href="{{$EducationalResource->url}}" target="_blank" class="no-line text-dark">
               @php
                 switch($EducationalResource->format){
                   case 1: echo "<i class='fa fa-file-word-o text-primary icon-size' aria-hidden='true'></i>&nbsp;&nbsp;&nbsp;";
@@ -47,9 +47,10 @@
                 }
               @endphp
             </a>
-            <a href="{{$EducationalResource->url}}" target="_blank" class="text-dark ">
+            <a href="{{$EducationalResource->url}}" target="_blank" class="text-dark
+            ">
               {{$EducationalResource->title}}
-            </a></h5>
+            </a></h6>
           </td>
           <td>
             @php

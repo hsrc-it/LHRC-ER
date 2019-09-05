@@ -69,7 +69,7 @@ class publicController extends Controller
             });
       }
       $findEducationalResources->orderBy('date_of_approval', 'asc');
-      $findEducationalResources = $findEducationalResources->paginate(5);
+      $findEducationalResources = $findEducationalResources->paginate(10);
       return  response(View::make('results', compact('findEducationalResources',['data' => $findEducationalResources])))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
   }
 }

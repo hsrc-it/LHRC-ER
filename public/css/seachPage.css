@@ -11,3 +11,6 @@
 .center{
   text-align: center;
 }
+.no-line:link{
+  text-decoration: none;
+}
