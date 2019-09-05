@@ -14,3 +14,6 @@
 .no-line:link{
   text-decoration: none;
 }
+.row-margin{
+  margin: 10px;
+}
