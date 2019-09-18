@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <meta http-equiv="X-UA-Compatible" content="IE=11" >
+        
         <title>Lifestyle & Health Research Center - Educational Resources</title>
 
         <!-- Jquery -->
@@ -43,30 +44,6 @@
                         </div>
                         <div class='row row-margin'>
                           <div class='col-sm-3'>
-                            <select name="gender" id="gender"class="form-control" >
-                              <option value="">Select gender </option>
-                              <option value="1">Male </option>
-                              <option value="2">Female </option>
-                              <option value="3">Both </option>
-                            </select>
-                          </div>
-                          <div class='col-sm-3'>
-                            <select name="age_group" id="age_group" class="form-control" >
-                              <option value="">Select age group </option>
-                              <option value="1">child [0-12] </option>
-                              <option value="2">Adolescent [13-18] </option>
-                              <option value="3">Adults [19-64] </option>
-                              <option value="4">Elderly [65+] </option>
-                            </select>
-                          </div>
-                          <div class='col-sm-3'>
-                            <select name="language" id="language" class="form-control" >
-                              <option value="">Select language </option>
-                              <option value="1">Arabic </option>
-                              <option value="2">English </option>
-                            </select>
-                          </div>
-                          <div class='col-sm-3'>
                             <select name="topic" id="topic" class="form-control" >
                               <option value="" selected="selected">Select topic</option>
                               <option value="1">Physical Activity</option>
@@ -81,6 +58,30 @@
                               <option value="10">Other</option>
                             </select>
                           </div>
+                          <div class='col-sm-3'>
+                            <select name="age_group" id="age_group" class="form-control" >
+                              <option value="">Select age group </option>
+                              <option value="1">child [0-12] </option>
+                              <option value="2">Adolescent [13-18] </option>
+                              <option value="3">Adults [19-64] </option>
+                              <option value="4">Elderly [65+] </option>
+                            </select>
+                          </div>
+                          <div class='col-sm-3'>
+                            <select name="gender" id="gender"class="form-control" >
+                              <option value="">Select gender </option>
+                              <option value="1">Male </option>
+                              <option value="2">Female </option>
+                              <option value="3">Both </option>
+                            </select>
+                          </div>
+                          <div class='col-sm-3'>
+                            <select name="language" id="language" class="form-control" >
+                              <option value="">Select language </option>
+                              <option value="1">Arabic </option>
+                              <option value="2">English </option>
+                            </select>
+                          </div>
                         </div>
                       </div>
 
@@ -92,13 +93,13 @@
                         </div>
                         <div class='row row-margin '>
                           <div class='col'>
-                            <input type="submit" value=" Reset " class="btn btn-primary" onclick="resetFormFields()">
+                            <input type="submit" value=" Clear " class="btn btn-danger" onclick="clearFormFields()">
                           </div>
                         </div>
                       </div>
                     </div>
                   </form>
-                <div class="results" id="results">
+                <div class="results" id="results" style="padding-top: 30px;">
                   @include('results')
                 </div>
             </div>

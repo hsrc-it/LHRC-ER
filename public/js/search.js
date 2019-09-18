@@ -25,15 +25,10 @@ function search()
 	 //alert("The form was submitted");
 }
 
-function resetFormFields()
+function clearFormFields()
 {
   event.preventDefault();
-
-	 $("#keyword").val("");
-	 $("#gender").val("");
-	 $("#age_group").val("");
-   $("#language").val("");
-   $("#topic").val("");
+  location.reload();
 }
 
 $(document).on('click', '.pagination a', function(event){

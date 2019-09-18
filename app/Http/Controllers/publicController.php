@@ -23,7 +23,8 @@ class publicController extends Controller
   public function index()
   {
       $totalEducationalResources = EducationalResource::count();
-      return  response(View::make('search', compact('totalEducationalResources')))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
+      $EducationalResources = EducationalResource::paginate(10);
+      return  response(View::make('search', compact('totalEducationalResources', 'EducationalResources')))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
   }
 
   public function search(Request $request)
