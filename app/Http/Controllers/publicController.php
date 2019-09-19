@@ -20,28 +20,19 @@ class publicController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Request $request)
   {
       $totalEducationalResources = EducationalResource::count();
       $EducationalResources = EducationalResource::paginate(10);
+      if($request->ajax())
+        {
+            return  View::make('results', compact('EducationalResources',['data' => $EducationalResources]));
+        }
       return  response(View::make('search', compact('totalEducationalResources', 'EducationalResources')))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
   }
 
   public function search(Request $request)
   {
-      // $validatedData = $request->validate([
-      //     // 'keyword' => ['required'],
-      //     // 'topics' => ['required'],
-      //      'gender' => ['integer'],
-      //      'age_group' => ['integer']
-      //     // 'language' => ['required','integer'],
-      //     // 'date_of_approval' => ['required'],
-      //     // 'url' => ['nullable','url','unique:educational_resources,url'],
-      //     // 'file' => ['file','max:3000', 'required_if:url,""'],
-      //     // 'format' => 'required',
-      //     // 'authors' => ['required']
-      // ]);
-      //start search//
       $findEducationalResources = new EducationalResource();
       $findEducationalResources = $findEducationalResources->newQuery();
       if($request->keyword != '')

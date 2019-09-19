@@ -19,16 +19,16 @@
 }
 .text-css{
   font: status-bar;
-  font-size: large;
+  font-size: initial;
   vertical-align: middle;
 }
 .cell-css{
-  font-size: large;
+  font-size: initial;
   text-align: center;
   vertical-align: middle !important;
 
 }
 .title-cell-css{
-  font-size: large;
+  font-size: initial;
   vertical-align: middle !important;
 }
