@@ -107,7 +107,7 @@
                         </div>
                         <div class='row row-margin '>
                           <div class='col'>
-                            <input type="submit" value=" Clear " class="btn btn-danger" onclick="clearFormFields()">
+                            <input type="submit" value="Clear" class="btn btn-danger" onclick="clearFormFields()" style="width: 70px">
                           </div>
                         </div>
                       </div>

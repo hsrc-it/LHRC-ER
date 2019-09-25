@@ -1,4 +1,5 @@
 @if(!empty($EducationalResources))
+  <div class="table-responsive">
     <table class="table">
       <thead>
         <tr >
@@ -81,12 +82,14 @@
         @endforeach
       </tbody>
     </table>
+  </div>
     <div class="hpadding20">
       <ul class="pagination right paddingbtm20">
         {{$EducationalResources->links()}}
       </ul>
     </div>
 @elseif(!empty($findEducationalResources))
+  <div class="table-responsive">
     <table class="table">
       <thead>
         <tr class="table-secondary">
@@ -174,6 +177,7 @@
         @endforeach
       </tbody>
     </table>
+  </div>
     <div class="hpadding20">
   		<ul class="pagination right paddingbtm20">
   		  {{$findEducationalResources->links()}}
