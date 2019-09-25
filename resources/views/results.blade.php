@@ -49,7 +49,7 @@
           <td class="cell-css">
             @php
               switch($EducationalResource->age_group){
-                case 1: echo "child<br>[0-12]";
+                case 1: echo "Child<br>[0-12]";
                 break;
                 case 2: echo "Adolescent<br>[13-18]";
                 break;
@@ -142,7 +142,7 @@
           <td class="cell-css">
             @php
               switch($EducationalResource->age_group){
-                case 1: echo "child<br>[0-12]";
+                case 1: echo "Child<br>[0-12]";
                 break;
                 case 2: echo "Adolescent<br>[13-18]";
                 break;

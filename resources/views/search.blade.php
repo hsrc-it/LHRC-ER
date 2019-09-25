@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=11" >
-        
+
         <title>Lifestyle & Health Research Center - Educational Resources</title>
 
         <!-- Jquery -->
@@ -26,6 +26,20 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/seachPage.css') }}" rel="stylesheet">
+
+        <!-- <script type='text/javascript' src="js/jquery.min.js"></script> -->
+        <script type='text/javascript'>
+          // Size the parent iFrame
+          function iframeResize() {
+            var height = $('body').outerHeight(); // IMPORTANT: If body's height is set to 100% with CSS this will not work.
+            parent.postMessage("resize::"+height,"*");
+          }
+
+          $(document).ready(function() {
+            // Resize iframe
+            setInterval(iframeResize, 1000);
+          });
+        </script>
 
     </head>
     <body class="body-size">
