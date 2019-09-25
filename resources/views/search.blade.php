@@ -63,7 +63,7 @@
                               <option value="1">Physical Activity</option>
                               <option value="2">Sedentary Behavior </option>
                               <option value="3">Physical Fitness </option>
-                              <option value="4">Nutrition Nutrition </option>
+                              <option value="4">Nutrition </option>
                               <option value="5">Mental Health</option>
                               <option value="6">Sleep and Health</option>
                               <option value="7">Body Composition and Weight Management </option>
@@ -75,7 +75,7 @@
                           <div class='col-sm-3'>
                             <select name="age_group" id="age_group" class="form-control" >
                               <option value="">Select age group </option>
-                              <option value="1">child [0-12] </option>
+                              <option value="1">Child [0-12] </option>
                               <option value="2">Adolescent [13-18] </option>
                               <option value="3">Adults [19-64] </option>
                               <option value="4">Elderly [65+] </option>
