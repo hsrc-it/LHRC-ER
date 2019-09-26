@@ -75,7 +75,7 @@
           </td>
 
           <td class="cell-css" style="white-space: nowrap;">
-            {{$EducationalResource->date_of_approval}}
+            {{date("d-m-Y", strtotime($EducationalResource->date_of_approval))}}
           </td>
 
         </tr>
