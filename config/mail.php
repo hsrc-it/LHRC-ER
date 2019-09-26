@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('hsrc-it'),
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => env('it@hsrc85'),
 
     /*
     |--------------------------------------------------------------------------
