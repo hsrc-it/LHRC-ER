@@ -20,18 +20,28 @@ class publicController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index(Request $request)
+  public function index(Request $request, $language)
   {
       $totalEducationalResources = EducationalResource::count();
       $EducationalResources = EducationalResource::paginate(10);
-      if($request->ajax())
-        {
-            return  View::make('results', compact('EducationalResources',['data' => $EducationalResources]));
-        }
-      return  response(View::make('search', compact('totalEducationalResources', 'EducationalResources')))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
+      if($language == "ar"){
+        if($request->ajax())
+          {
+              return  View::make('arabic.results', compact('EducationalResources',['data' => $EducationalResources]));
+          }
+        return  response(View::make('arabic.search', compact('totalEducationalResources', 'EducationalResources')))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
+      }
+      if($language == "en"){
+        if($request->ajax())
+          {
+              return  View::make('english.results', compact('EducationalResources',['data' => $EducationalResources]));
+          }
+        return  response(View::make('english.search', compact('totalEducationalResources', 'EducationalResources')))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
+      }
+
   }
 
-  public function search(Request $request)
+  public function search(Request $request, $language)
   {
       $findEducationalResources = new EducationalResource();
       $findEducationalResources = $findEducationalResources->newQuery();
@@ -62,6 +72,12 @@ class publicController extends Controller
       }
       $findEducationalResources->orderBy('date_of_approval', 'asc');
       $findEducationalResources = $findEducationalResources->paginate(10);
-      return  response(View::make('results', compact('findEducationalResources',['data' => $findEducationalResources])))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
+      if($language == "ar"){
+        return  response(View::make('arabic.results', compact('findEducationalResources',['data' => $findEducationalResources])))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
+      }
+      if($language == "en"){
+        return  response(View::make('english.results', compact('findEducationalResources',['data' => $findEducationalResources])))->header('X-Frame-Options', 'allow-from http://staging-lh-hsrc.pnu.edu.sa:8080');
+      }
+
   }
 }

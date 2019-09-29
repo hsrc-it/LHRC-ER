@@ -3,10 +3,11 @@ function search()
 {
   event.preventDefault();
 
+
 	$.ajax({
 		type: 'get',
 		dataType: 'html',
-		url: "/search",
+		url: $('#SearchForm').attr('action'),
 		data: {
 				keyword: $("#keyword").val(),
 				gender: $("#gender").val(),
