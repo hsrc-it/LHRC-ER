@@ -23,5 +23,5 @@ Route::group(['middleware' => ['auth']], function() {
   Route::post('/admin/store/educational-resource', 'EducationalResourcesController@store');
 });
 
-Route::get('/EducationalResources/search', 'publicController@index');
-Route::get('/search', 'publicController@search');
+Route::get('/EducationalResources/{language}/search', 'publicController@index');
+Route::get('/{language}/search', 'publicController@search');

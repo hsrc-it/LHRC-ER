@@ -46,7 +46,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="p-3 mb-2 text-dark center"><h4>LHRC contains <b>{{$totalEducationalResources}}</b> educational resources </h4></div>
-                  <form action="/search" method="GET" id="SearchForm">
+                  <form action="/en/search" method="GET" id="SearchForm">
                     <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 
                     <div class='form-group row'>
@@ -114,7 +114,7 @@
                     </div>
                   </form>
                 <div class="results" id="results" style="padding-top: 30px;">
-                  @include('results')
+                  @include('english.results')
                 </div>
             </div>
         </div>
