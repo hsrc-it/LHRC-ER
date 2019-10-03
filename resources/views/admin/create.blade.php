@@ -37,9 +37,7 @@
                                             @endif
                                            </div>
                                           </br>
-                                          {{ html()->form('post', '/admin/store/educational-resource')->attribute('enctype', "multipart/form-data")->open() }}
-                                          <!-- token -->
-                                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                          {{ html()->form('post', '/admin/store/educational-resource')->attribute('enctype', "multipart/form-data")->open() }}                                          
                                             <!-- Title -->
                                             <div class='form-group row'>
                             									{{ html()->label('Title *')->class(['col-sm-3', 'col-form-label', 'font-weight-bold']) }}
