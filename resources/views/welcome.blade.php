@@ -90,6 +90,8 @@
                 </div>
 
                 <div class="links">
+                    <a href="/EducationalResources/search">Search page</a>
+
                 </div>
             </div>
         </div>

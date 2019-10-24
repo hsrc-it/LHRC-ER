@@ -23,3 +23,6 @@ Route::group(['middleware' => ['auth']], function() {
   Route::get('/admin/create/educational-resource', 'EducationalResourcesController@create')->name('createResource');
   Route::post('/admin/store/educational-resource', 'EducationalResourcesController@store');
 });
+
+Route::get('/EducationalResources/{language}/search', 'publicController@index');
+Route::get('/{language}/search', 'publicController@search');
