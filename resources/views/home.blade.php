@@ -68,18 +68,13 @@
                             </a></h5>
                           </td>
                           <td>
-                            @php
-                              switch($EducationalResource->age_group){
-                                case 1: echo "child [0-12]";
-                                break;
-                                case 2: echo "Adolescent [13-18]";
-                                break;
-                                case 3: echo "Adults [19-64]";
-                                break;
-                                case 4: echo "Elderly [65+]";
-                                break;
-                              }
-                            @endphp
+                            @foreach($EducationalResource->ageGroups as $ageGroup)
+                              @if ($ageGroup === end($EducationalResource->ageGroups))
+                                {{$ageGroup['age_group']}}
+                              @else
+                                {{$ageGroup['age_group']}} <br>
+                              @endif
+                            @endforeach
                           </td>
                           <td>
                             @php

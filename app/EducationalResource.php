@@ -10,7 +10,6 @@ class EducationalResource extends Model
     protected $fillable = [
       'title',
       'gender',
-      'age_group',
       'language',
       'url',
       'format',
@@ -21,6 +20,10 @@ class EducationalResource extends Model
     public function topics()
     {
         return $this->belongsToMany('App\Topic');
+    }
+    public function ageGroups()
+    {
+        return $this->belongsToMany('App\AgeGroups', 'age_group_educational_resource', 'educational_resource_id', 'age_group_id');
     }
     public function authors()
     {

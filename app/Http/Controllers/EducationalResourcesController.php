@@ -53,7 +53,7 @@ class EducationalResourcesController extends Controller
               'title' => ['required','max:500','regex:/[^\s]/','unique:educational_resources,title'],
               'topics' => ['required'],
               'gender' => ['required','integer'],
-              'age_group' => ['required','integer'],
+              'age_groups' => ['required'],
               'language' => ['required','integer'],
               'date_of_approval' => ['required'],
               'url' => ['nullable','url','unique:educational_resources,url'],
@@ -93,6 +93,9 @@ class EducationalResourcesController extends Controller
               {
                 //add Topics
                 $newResource->topics()->sync($request->topics);
+
+                //add age groups
+                $newResource->ageGroups()->sync($request->age_groups);
                 if(!empty($request->authors))
                 {
                   // add sources

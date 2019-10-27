@@ -37,7 +37,7 @@
                                             @endif
                                            </div>
                                           </br>
-                                          {{ html()->form('post', '/admin/store/educational-resource')->attribute('enctype', "multipart/form-data")->open() }}                                          
+                                          {{ html()->form('post', '/admin/store/educational-resource')->attribute('enctype', "multipart/form-data")->open() }}
                                             <!-- Title -->
                                             <div class='form-group row'>
                             									{{ html()->label('Title *')->class(['col-sm-3', 'col-form-label', 'font-weight-bold']) }}
@@ -68,7 +68,7 @@
                                             <div class="form-group row">
                                               {{ html()->label('Age Group *')->class(['col-sm-3', 'col-form-label', 'font-weight-bold']) }}
                                               <div class="col-sm-9">
-                                                {{ html()->select('age_group', [1 => 'child [0-12]', 2 => 'Adolescent [13-18]', 3 => 'Adults [19-64]', 4 => 'Elderly [65+]'])->required()->placeholder('Select age group')->class('form-control') }}
+                                                {{ html()->multiselect('age_groups', App\AgeGroups::getAgeGroups())->attribute('size', 5)->required()->placeholder('Select age group')->class(['form-control', 'no-scrollbar-css']) }}
                             									</div>
                             								</div>
                                             <!-- Language -->
