@@ -47,19 +47,14 @@
               {{$EducationalResource->title}}
             </a></h6>
           </td>
-          <td class="cell-css">
-            @php
-              switch($EducationalResource->age_group){
-                case 1: echo "أطفال<br>[0-12]";
-                break;
-                case 2: echo "مراهقين<br>[13-18]";
-                break;
-                case 3: echo "بالغين<br>[19-64]";
-                break;
-                case 4: echo "كبار السن<br>[65+]";
-                break;
-              }
-            @endphp
+          <td class="cell-css" style="white-space: nowrap">
+            @foreach($EducationalResource->ageGroups as $ageGroup)
+              @if ($ageGroup === end($EducationalResource->ageGroups))
+                {{$ageGroup['arabic_name']}}
+              @else
+              {{$ageGroup['arabic_name']}}<br>
+                @endif
+            @endforeach
           </td>
           <td class="cell-css">
             @php
@@ -142,19 +137,14 @@
               {{$EducationalResource->title}}
             </a></h6>
           </td>
-          <td class="cell-css">
-            @php
-              switch($EducationalResource->age_group){
-                case 1: echo "أطفال<br>[0-12]";
-                break;
-                case 2: echo "مراهقين<br>[13-18]";
-                break;
-                case 3: echo "بالغين<br>[19-64]";
-                break;
-                case 4: echo "كبار السن<br>[65+]";
-                break;
-              }
-            @endphp
+          <td class="cell-css" style="white-space: nowrap">
+            @foreach($EducationalResource->ageGroups as $ageGroup)
+              @if ($ageGroup === end($EducationalResource->ageGroups))
+                {{$ageGroup['arabic_name']}}
+              @else
+              {{$ageGroup['arabic_name']}}<br>
+                @endif
+            @endforeach
           </td>
           <td class="cell-css">
             @php

@@ -68,7 +68,12 @@
                                             <div class="form-group row">
                                               {{ html()->label('Age Group *')->class(['col-sm-3', 'col-form-label', 'font-weight-bold']) }}
                                               <div class="col-sm-9">
-                                                {{ html()->multiselect('age_groups', App\AgeGroups::getAgeGroups())->attribute('size', 5)->required()->placeholder('Select age group')->class(['form-control', 'no-scrollbar-css']) }}
+                                                <select class="form-control no-scrollbar-css" name="age_groups[]" id="age_groups" multiple="" size="5" required="">
+                                                  <option value='' selected="selected">Select age group</option>
+                                                  @foreach(App\AgeGroups::getAgeGroups() as $ageGroup)
+                                                  <option value='{{$ageGroup->id}}'>{{$ageGroup->englsih_name}}</option>
+                                                  @endforeach
+                                                </select>
                             									</div>
                             								</div>
                                             <!-- Language -->

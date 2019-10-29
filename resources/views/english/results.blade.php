@@ -50,9 +50,9 @@
           <td class="cell-css" style="white-space: nowrap">
             @foreach($EducationalResource->ageGroups as $ageGroup)
               @if ($ageGroup === end($EducationalResource->ageGroups))
-                {{$ageGroup['age_group']}}
+                {{$ageGroup['englsih_name']}}
               @else
-              {{$ageGroup['age_group']}}<br>
+              {{$ageGroup['englsih_name']}}<br>
                 @endif
             @endforeach
           </td>
@@ -140,9 +140,9 @@
           <td class="cell-css" style="white-space: nowrap">
             @foreach($EducationalResource->ageGroups as $ageGroup)
               @if ($ageGroup === end($EducationalResource->ageGroups))
-                {{$ageGroup['age_group']}}
+                {{$ageGroup['englsih_name']}}
               @else
-              {{$ageGroup['age_group']}}<br>
+              {{$ageGroup['englsih_name']}}<br>
                 @endif
             @endforeach
           </td>

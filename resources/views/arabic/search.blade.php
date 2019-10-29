@@ -76,10 +76,9 @@
                           <div class='col-sm-3'>
                             <select name="age_group" id="age_group" class="form-control" >
                               <option value="">اختر الفئة العمرية </option>
-                              <option value="1"> أطفال (0-12)</option>
-                              <option value="2"> مراهقين (13-18) </option>
-                              <option value="3"> بالغين (19-64) </option>
-                              <option value="4"> كبار السن (+65)</option>
+                              @foreach(App\AgeGroups::getAgeGroups() as $ageGroup)
+                              <option value='{{$ageGroup->id}}'>{{$ageGroup->arabic_name}} </option>
+                              @endforeach
                             </select>
                           </div>
                           <div class='col-sm-3'>

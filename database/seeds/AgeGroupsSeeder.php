@@ -15,19 +15,23 @@ class AgeGroupsSeeder extends Seeder
 
       $ageGroups = array(
           array(
-              'age_group' => 'Child [0-12]',
-              'created_at' => today()
-          ),
-          array(
-            'age_group' => 'Adolescent [13-18]',
+            'englsih_name' => 'Child [0-12]',
+            'arabic_name' => '',
             'created_at' => today()
           ),
           array(
-            'age_group' => 'Adults [19-64]',
+            'englsih_name' => 'Adolescent [13-18]',
+            'arabic_name' => '',
             'created_at' => today()
           ),
           array(
-            'age_group' => 'Elderly [65+]',
+            'englsih_name' => 'Adults [19-64]',
+            'arabic_name' => '',
+            'created_at' => today()
+          ),
+          array(
+            'englsih_name' => 'Elderly [65+]',
+            'arabic_name' => '',
             'created_at' => today()
           )
         );

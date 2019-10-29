@@ -70,9 +70,9 @@
                           <td style="white-space: nowrap">
                             @foreach($EducationalResource->ageGroups as $ageGroup)
                               @if ($ageGroup === end($EducationalResource->ageGroups))
-                                {{$ageGroup['age_group']}}
+                                {{$ageGroup['englsih_name']}}
                               @else
-                                {{$ageGroup['age_group']}} <br>
+                                {{$ageGroup['englsih_name']}} <br>
                               @endif
                             @endforeach
                           </td>
@@ -89,7 +89,7 @@
                             @endphp
                           </td>
 
-                          <td style="white-space: nowrap"> 
+                          <td style="white-space: nowrap">
                             {{$EducationalResource->date_of_approval}}
                           </td>
 
@@ -97,6 +97,7 @@
                         @endforeach
                       </tbody>
                     </table>
+                    {{$allResources->links()}}
                 @else
                   No resources entered ...
                 @endif

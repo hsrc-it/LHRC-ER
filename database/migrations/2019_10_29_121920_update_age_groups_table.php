@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAgeGroupsTable extends Migration
+class UpdateAgeGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateAgeGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('age_groups', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned();
-            $table->text('englsih_name', 500);
-            $table->text('arabic_name', 500);
-            $table->timestamps();
-        });
+      Schema::table('age_groups', function (Blueprint $table) {
+          $table->renameColumn('age_group', 'englsih_name');
+          $table->text('arabic_name', 500);
+      });
     }
 
     /**
@@ -28,6 +26,6 @@ class CreateAgeGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('age_groups');
+        //
     }
 }

@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $allResources = EducationalResource::get();
+        $allResources = EducationalResource::paginate(50);
         //return view('home', compact('allResources'));
         return response(View::make('home',compact('allResources')))->header('X-Frame-Options', 'DENY');
     }

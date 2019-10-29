@@ -75,10 +75,9 @@
                           <div class='col-sm-3'>
                             <select name="age_group" id="age_group" class="form-control" >
                               <option value="">Select age group </option>
-                              <option value="1">Child [0-12] </option>
-                              <option value="2">Adolescent [13-18] </option>
-                              <option value="3">Adults [19-64] </option>
-                              <option value="4">Elderly [65+] </option>
+                              @foreach(App\AgeGroups::getAgeGroups() as $ageGroup)
+                              <option value='{{$ageGroup->id}}'>{{$ageGroup->englsih_name}} </option>
+                              @endforeach
                             </select>
                           </div>
                           <div class='col-sm-3'>
