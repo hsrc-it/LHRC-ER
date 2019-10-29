@@ -90,7 +90,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="/EducationalResources/search">Search page</a>
+                    <a href="/EducationalResources/en/search">Search page (E)</a>
+                    <a href="/EducationalResources/ar/search">Search page (A)</a>
 
                 </div>
             </div>

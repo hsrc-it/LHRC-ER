@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -67,7 +67,7 @@
                               {{$EducationalResource->title}}
                             </a></h5>
                           </td>
-                          <td>
+                          <td style="white-space: nowrap">
                             @foreach($EducationalResource->ageGroups as $ageGroup)
                               @if ($ageGroup === end($EducationalResource->ageGroups))
                                 {{$ageGroup['age_group']}}
@@ -89,7 +89,7 @@
                             @endphp
                           </td>
 
-                          <td>
+                          <td style="white-space: nowrap"> 
                             {{$EducationalResource->date_of_approval}}
                           </td>
 

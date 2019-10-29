@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Topic extends Model
 {
   protected $table = 'topics';
-  protected $fillable = [
-      'english_name', 'arabic_name'
-  ];
+  protected $fillable = ['english_name', 'arabic_name'];
 
   public static function getTopics()
   {

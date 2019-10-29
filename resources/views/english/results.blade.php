@@ -26,7 +26,7 @@
           <td class="cell-css">
             {{ (($EducationalResources->currentPage() - 1 ) * $EducationalResources->perPage() ) + $loop->iteration }}
           </td>
-          <td>
+          <td style="vertical-align: middle !important;">
           <h6><a href="{{$EducationalResource->url}}" target="_blank" class="no-line text-dark">
               @php
                 switch($EducationalResource->format){
@@ -47,19 +47,14 @@
               {{$EducationalResource->title}}
             </a></h6>
           </td>
-          <td class="cell-css">
-            @php
-              switch($EducationalResource->age_group){
-                case 1: echo "Child<br>[0-12]";
-                break;
-                case 2: echo "Adolescent<br>[13-18]";
-                break;
-                case 3: echo "Adults<br>[19-64]";
-                break;
-                case 4: echo "Elderly<br>[65+]";
-                break;
-              }
-            @endphp
+          <td class="cell-css" style="white-space: nowrap">
+            @foreach($EducationalResource->ageGroups as $ageGroup)
+              @if ($ageGroup === end($EducationalResource->ageGroups))
+                {{$ageGroup['age_group']}}
+              @else
+              {{$ageGroup['age_group']}}<br>
+                @endif
+            @endforeach
           </td>
           <td class="cell-css">
             @php
@@ -121,7 +116,7 @@
           <td class="cell-css">
             {{ (($findEducationalResources->currentPage() - 1 ) * $findEducationalResources->perPage() ) + $loop->iteration }}
           </td>
-          <td>
+          <td style="vertical-align: middle !important;">
           <h6><a href="{{$EducationalResource->url}}" target="_blank" class="no-line text-dark">
               @php
                 switch($EducationalResource->format){
@@ -142,19 +137,14 @@
               {{$EducationalResource->title}}
             </a></h6>
           </td>
-          <td class="cell-css">
-            @php
-              switch($EducationalResource->age_group){
-                case 1: echo "Child<br>[0-12]";
-                break;
-                case 2: echo "Adolescent<br>[13-18]";
-                break;
-                case 3: echo "Adults<br>[19-64]";
-                break;
-                case 4: echo "Elderly<br>[65+]";
-                break;
-              }
-            @endphp
+          <td class="cell-css" style="white-space: nowrap">
+            @foreach($EducationalResource->ageGroups as $ageGroup)
+              @if ($ageGroup === end($EducationalResource->ageGroups))
+                {{$ageGroup['age_group']}}
+              @else
+              {{$ageGroup['age_group']}}<br>
+                @endif
+            @endforeach
           </td>
           <td class="cell-css">
             @php

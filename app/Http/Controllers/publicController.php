@@ -58,7 +58,9 @@ class publicController extends Controller
       }
       if($request->age_group != '')
       {
-        $findEducationalResources->where('age_group', $request->age_group);
+        $findEducationalResources->with('ageGroups')->whereHas('ageGroups', function($query) use ($request){
+                $query->where('age_group_id', $request->age_group);
+            });
       }
       if($request->language != '')
       {
